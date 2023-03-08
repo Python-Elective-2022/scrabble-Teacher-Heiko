@@ -89,8 +89,8 @@ def display_hand(hand):
 
     hand: dictionary (string -> int)
     """
-    for letter in hand.keys():
-        for j in range(hand[letter]):
+    for letter in hand.keys():          # could also concat an output string
+        for j in range(hand[letter]):   # use 'x' * 2 instead ?
             print(letter, end=" ")       # print all on the same line
     print()                             # print an empty line
 
@@ -147,6 +147,24 @@ def update_hand(hand, word):
     """
     # TO DO ... <-- Remove this comment when you code this function
 
+    # Pseudocode
+    make a .copy of the hand 
+    
+    for every letter in the word
+        if letter is in hand_copy
+            if letter count > 0
+                subtract 1 from the dictionary letter count 
+                
+            else:
+                Two ways:
+                keep the letter count at zero
+                or
+                del dictionary key
+                
+    return hand_copy
+
+
+
 
 #
 # Problem #3: Test word validity
@@ -164,9 +182,31 @@ def is_valid_word(word, hand, word_list):
     """
     # TO DO ... <-- Remove this comment when you code this function
 
+    # Pseudocode
+    make a .copy() of the hand
+    
+    
+    for every letter in the word
+        if letter is not in hand_copy
+            return False
+        otherwise
+            check if we have enough of that letter in the hand
+            if hand_copy[letter] > 0  # ok enough of that letter
+                substract 1 from letter count
+                hand_copy[letter] -= 1
+            otherwise                 # not enough of that letter
+                return False
+  
+    if word is not in word list  # check against all 80000+ words
+        return False
+    
+    # all checks pass
+    return True
+
+
 
 #
-# Problem #4: Playing a hand
+# Problem #4: Hand Length
 #
 
 def calculate_hand_len(hand):
@@ -178,6 +218,9 @@ def calculate_hand_len(hand):
     """
     # TO DO... <-- Remove this comment when you code this function
 
+#
+# Problem #5: Playing a hand
+#
 
 def play_hand(hand, word_list, n):
     """
@@ -230,7 +273,7 @@ def play_hand(hand, word_list, n):
 
 
 #
-# Problem #5: Playing a game
+# Problem #6: Playing a game
 #
 
 def play_game(word_list):
